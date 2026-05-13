@@ -31,7 +31,7 @@ export default function Navbar() {
             </div>
 
             <h1 className="text-lg font-semibold tracking-wide text-white uppercase">
-              YOUR BRAND
+              Faces Draw
             </h1>
           </Link>
 
