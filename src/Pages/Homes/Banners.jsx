@@ -9,11 +9,11 @@ const Banners = () => {
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,#0cf2ff15,transparent_40%)]"></div>
 
-        <img
-          src="/bg-car.png"
+        {/* <img
+          src="/https://i.ibb.co.com/qLpnZBPB/lam.jpg"
           alt="Luxury Car"
           className="absolute right-0 top-0 h-full w-[55%] object-cover opacity-10"
-        />
+        /> */}
       </div>
 
       {/* MAIN CONTENT */}
@@ -144,7 +144,7 @@ const Banners = () => {
               <div className="flex items-center justify-center h-[220px] mt-8 rounded-3xl border border-cyan-400/10 bg-[#031018] overflow-hidden">
 
                 <img
-                  src="/lambo.png"
+                  src="https://i.ibb.co.com/qLpnZBPB/lam.jpg"
                   alt="Lamborghini"
                   className="object-contain w-[85%] hover:scale-105 transition duration-500"
                 />

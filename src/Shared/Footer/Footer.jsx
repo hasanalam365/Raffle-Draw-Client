@@ -28,7 +28,7 @@ export default function Footer() {
           {/* BRAND */}
           <div>
             <h4 className="mb-4 font-serif text-2xl tracking-widest">
-           Demo Footer
+          Faces Draw
             </h4>
             <p className="mb-6 text-sm leading-relaxed text-white/50">
          brings
