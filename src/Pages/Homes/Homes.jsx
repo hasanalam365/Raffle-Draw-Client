@@ -3,6 +3,7 @@ import Banners from './Banners'
 import WinnersBar from './WinnersBar'
 import FeaturesCompetetion from './FeaturesCompetetion'
 import HowItWorks from './HowItWorks'
+import RecentWinners from './RecentWinners'
 
 const Homes = () => {
   return (
@@ -11,6 +12,7 @@ const Homes = () => {
         <WinnersBar/>
         <FeaturesCompetetion/>
         <HowItWorks/>
+        <RecentWinners/>
       
     </div>
   )
