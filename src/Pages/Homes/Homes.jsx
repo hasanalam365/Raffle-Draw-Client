@@ -4,6 +4,9 @@ import WinnersBar from './WinnersBar'
 import FeaturesCompetetion from './FeaturesCompetetion'
 import HowItWorks from './HowItWorks'
 import RecentWinners from './RecentWinners'
+import TestimonialsSection from './TestimonialsSection'
+import FAQ from './FAQ'
+import MessageSend from './MessageSend'
 
 const Homes = () => {
   return (
@@ -13,6 +16,9 @@ const Homes = () => {
         <FeaturesCompetetion/>
         <HowItWorks/>
         <RecentWinners/>
+        <TestimonialsSection/>
+        <FAQ/>
+        <MessageSend/>
       
     </div>
   )
