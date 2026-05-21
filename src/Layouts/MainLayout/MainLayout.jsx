@@ -1,14 +1,18 @@
-// MainLayout.jsx
 import React from "react";
 import { Outlet } from "react-router-dom";
 
 import Navbar from "../../Shared/Navbar/Navbar";
 import Footer from "../../Shared/Footer/Footer";
 
+import ScrollToTop from "../../Components/ScrollToTop";
+
 const MainLayout = () => {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       
+      {/* SCROLL TO TOP */}
+      <ScrollToTop />
+
       {/* NAVBAR */}
       <Navbar />
 
@@ -19,7 +23,6 @@ const MainLayout = () => {
 
       {/* FOOTER */}
       <Footer />
-
     </div>
   );
 };
