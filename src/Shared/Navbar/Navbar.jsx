@@ -11,7 +11,7 @@ export default function Navbar() {
     { name: "Competitions", path: "/competitions" },
     { name: "Winners", path: "/winners" },
     { name: "How It Works", path: "/how-it-works" },
-    { name: "About", path: "/about" },
+    { name: "About", path: "/about-us" },
     { name: "Contact", path: "/contact" },
   ];
 

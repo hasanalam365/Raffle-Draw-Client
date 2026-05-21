@@ -7,6 +7,7 @@ import Homes from "../../Pages/Homes/Homes";
 import Competitions from "../../Pages/Competitions/Competitions";
 import Winners from "../../Pages/Winners/Winners";
 import HowItWorks from "../../Pages/Homes/HowItWorks";
+import About from "../../Pages/About/About";
 
 
 
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
             {
                 path: '/how-it-works',
                 element: <HowItWorks/>
+            },
+            {
+                path: '/about-us',
+                element: <About/>
             }
           
            
