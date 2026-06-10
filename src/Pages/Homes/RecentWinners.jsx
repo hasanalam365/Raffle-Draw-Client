@@ -1,229 +1,190 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import {
-  Trophy,
-  Quote,
-  Star,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 import {
-  motion,
-  animate,
-  useMotionValue,
-  useTransform,
-} from "framer-motion";
+  Swiper,
+  SwiperSlide,
+} from "swiper/react";
+
+import {
+  Navigation,
+  Autoplay,
+} from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
 
 const winners = [
   {
     id: 1,
-    name: "Hasan Alam",
-    prize: "£10,000 Cash",
-    amount: "£10,000",
-    type: "Live Draw",
+    name: "Danny Cook",
+    date: "April 29, 2026",
+    prize: "The £1.5 Million Bundle",
+    description:
+      "#1 won a £1.5 million prize... now my son is set up for life. Danny Cook, 29, from Brentwood...",
+    images: [
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800",
+      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800",
+    ],
   },
   {
     id: 2,
-    name: "Hasan Alam",
-    prize: "BMW M4 Competition",
-    amount: "£75,000",
-    type: "Live Draw",
+    name: "Ashley Jaques",
+    date: "March 30, 2026",
+    prize: "£1.4 Million Dream Home Bundle",
+    description:
+      "Ashley from Hinckley, Leicester has just won our £1.4 Million Dream Home Bundle and £100,000 cash...",
+    images: [
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800",
+    ],
   },
   {
     id: 3,
-    name: "Emily R.",
-    prize: "iPhone 15 Pro Max",
-    amount: "£1,199",
-    type: "Instant Win",
+    name: "Nathan Conway",
+    date: "February 28, 2026",
+    prize: "£1 Million Vault",
+    description:
+      "Still can't quite believe this one... Nathan Conway came down to the Elite headquarters...",
+    images: [
+      "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=800",
+      "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=800",
+    ],
   },
   {
     id: 4,
-    name: "Sarah M.",
+    name: "Sarah Morgan",
+    date: "January 18, 2026",
     prize: "Range Rover Sport",
-    amount: "£65,000",
-    type: "Live Draw",
+    description:
+      "Sarah collected her dream car after winning our exclusive luxury vehicle draw.",
+    images: [
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800",
+      "https://images.unsplash.com/photo-1502164980785-f8aa41d53611?q=80&w=800",
+    ],
   },
 ];
 
-
-// COUNT ANIMATION COMPONENT
-const CountAmount = ({ amount }) => {
-  const numericValue = Number(
-    amount.replace(/[^0-9]/g, "")
-  );
-
-  const count = useMotionValue(0);
-
-  const rounded = useTransform(
-    count,
-    (latest) =>
-      `£${Math.floor(latest).toLocaleString()}`
-  );
-
-  useEffect(() => {
-    const controls = animate(
-      count,
-      numericValue,
-      {
-        duration: 2,
-        ease: "easeOut",
-      }
-    );
-
-    return controls.stop;
-  }, []);
-
-  return <motion.span>{rounded}</motion.span>;
-};
-
 const RecentWinners = () => {
   return (
-    <section className="relative overflow-hidden border-t border-cyan-400/10 bg-[#031018] py-20 px-4 md:px-8 text-white">
+    <section className="relative py-20 overflow-hidden bg-black">
+      {/* Glow */}
+      <div className="absolute left-0 top-0 h-[400px] w-[400px] rounded-full bg-[#57f3f0]/10 blur-[140px]" />
 
-      {/* BACKGROUND GLOW */}
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-cyan-400/10 blur-[160px] rounded-full"></div>
+      <div className="relative px-4 mx-auto max-w-7xl">
 
-      <div className="relative z-10 mx-auto max-w-7xl">
+        {/* Heading */}
+        <div className="flex items-center justify-between mb-10">
 
-        {/* heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="text-center mb-14"
-        >
-          <p className="text-cyan-300 uppercase tracking-[4px] text-xs font-semibold mb-3">
-            Real People, Real Prizes
-          </p>
-
-          <h2 className="mb-5 text-4xl font-black text-white md:text-6xl">
-            Recent{" "}
-            <span className="text-cyan-300">
-              Winners
+          <div>
+            <span className="inline-flex px-5 py-2 text-sm font-bold tracking-wider text-white uppercase border border-white rounded-lg">
+              OUR TOP WINNERS
             </span>
-          </h2>
+          </div>
 
-          <p className="max-w-2xl mx-auto text-sm text-white/60 md:text-base">
-            Join thousands of winners who've changed
-            their lives with Faces Draw
-          </p>
-        </motion.div>
+          <div className="hidden gap-3 md:flex">
 
-        {/* winners cards */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <button className="winner-prev flex h-12 w-12 items-center justify-center rounded-lg border border-[#57f3f0] text-[#57f3f0] transition hover:bg-[#57f3f0] hover:text-black">
+              <ChevronLeft size={22} />
+            </button>
 
-          {winners.map((winner, index) => (
-            <motion.div
-              key={winner.id}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.12,
-              }}
-              viewport={{ once: true }}
-              whileHover={{
-                y: -8,
-                scale: 1.02,
-              }}
-              className="group relative overflow-hidden rounded-3xl border border-cyan-400/10 bg-white/[0.03] px-6 py-8 text-center backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/30"
-            >
+            <button className="winner-next flex h-12 w-12 items-center justify-center rounded-lg border border-[#57f3f0] text-[#57f3f0] transition hover:bg-[#57f3f0] hover:text-black">
+              <ChevronRight size={22} />
+            </button>
 
-              {/* card glow */}
-              <div className="absolute inset-0 opacity-0 transition duration-500 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.12),transparent_70%)] group-hover:opacity-100"></div>
+          </div>
+        </div>
 
-              {/* quote */}
-              <Quote
-                size={32}
-                className="absolute top-5 right-5 text-cyan-400/10"
-              />
+        {/* Slider */}
+        <Swiper
+          modules={[Navigation, Autoplay]}
+          navigation={{
+            prevEl: ".winner-prev",
+            nextEl: ".winner-next",
+          }}
+          autoplay={{
+            delay: 3500,
+            disableOnInteraction: false,
+          }}
+          loop={true}
+          spaceBetween={20}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            1200: {
+              slidesPerView: 3,
+            },
+          }}
+        >
+          {winners.map((winner) => (
+            <SwiperSlide key={winner.id}>
+              <div className="overflow-hidden rounded-2xl border border-[#1737d4] bg-[#1737d4] transition-all duration-300 hover:-translate-y-1">
 
-              {/* trophy */}
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 180,
-                  delay: index * 0.15,
-                }}
-                viewport={{ once: true }}
-                className="relative z-10 flex justify-center mb-5"
-              >
-                <div className="flex items-center justify-center w-[68px] h-[68px] rounded-2xl border border-cyan-400/20 bg-cyan-400/10 shadow-[0_0_30px_rgba(34,211,238,0.18)]">
-                  <Trophy
-                    size={30}
-                    className="text-cyan-300"
-                  />
+                {/* Top Info */}
+                <div className="p-4">
+
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="font-bold text-white">
+                      {winner.name}
+                    </h3>
+
+                    <span className="text-xs text-white/70">
+                      {winner.date}
+                    </span>
+                  </div>
+
+                  <div className="inline-block rounded bg-[#57f3f0] px-3 py-1 text-sm font-bold text-black">
+                    {winner.prize}
+                  </div>
+
+                  <p className="mt-3 text-sm font-medium text-white line-clamp-3">
+                    {winner.description}
+                  </p>
+
+                  <button className="mt-3 text-sm font-bold text-white transition hover:text-[#57f3f0]">
+                    read more...
+                  </button>
                 </div>
-              </motion.div>
 
-              {/* name */}
-              <h3 className="relative z-10 text-xl font-black text-white">
-                {winner.name}
-              </h3>
+                {/* Images */}
+                <div className="grid grid-cols-2">
 
-              {/* prize */}
-              <p className="relative z-10 mt-2 text-sm font-semibold text-cyan-300">
-                {winner.prize}
-              </p>
+                  <img
+                    src={winner.images[0]}
+                    alt={winner.name}
+                    className="h-[220px] w-full object-cover"
+                  />
 
-              {/* amount with count animation */}
-              <motion.h2
-                initial={{ opacity: 0, scale: 0.7 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.2 + index * 0.1,
-                }}
-                viewport={{ once: true }}
-                className="relative z-10 mt-4 text-5xl font-black text-white"
-              >
-                <CountAmount amount={winner.amount} />
-              </motion.h2>
+                  <img
+                    src={winner.images[1]}
+                    alt={winner.name}
+                    className="h-[220px] w-full object-cover"
+                  />
 
-              {/* stars */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{
-                  delay: 0.4 + index * 0.1,
-                }}
-                viewport={{ once: true }}
-                className="relative z-10 flex justify-center gap-1 mt-5"
-              >
-                {[...Array(5)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    transition={{
-                      delay:
-                        0.45 +
-                        i * 0.05 +
-                        index * 0.1,
-                    }}
-                    viewport={{ once: true }}
-                  >
-                    <Star
-                      size={15}
-                      fill="#67e8f9"
-                      className="text-cyan-300"
-                    />
-                  </motion.div>
-                ))}
-              </motion.div>
-
-              {/* divider */}
-              <div className="relative z-10 w-full h-[1px] bg-white/10 my-6"></div>
-
-              {/* type */}
-              <p className="relative z-10 text-xs uppercase tracking-[2px] text-white/40">
-                {winner.type}
-              </p>
-
-            </motion.div>
+                </div>
+              </div>
+            </SwiperSlide>
           ))}
+        </Swiper>
+
+        {/* Mobile Buttons */}
+        <div className="flex justify-center gap-3 mt-6 md:hidden">
+
+          <button className="winner-prev flex h-12 w-12 items-center justify-center rounded-lg border border-[#57f3f0] text-[#57f3f0]">
+            <ChevronLeft size={22} />
+          </button>
+
+          <button className="winner-next flex h-12 w-12 items-center justify-center rounded-lg border border-[#57f3f0] text-[#57f3f0]">
+            <ChevronRight size={22} />
+          </button>
 
         </div>
       </div>

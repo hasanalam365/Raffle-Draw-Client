@@ -1,214 +1,134 @@
 import React from "react";
-import { ArrowRight } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
+
+const slides = [
+  {
+    id: 1,
+    image: "https://i.ibb.co.com/qLpnZBPB/lam.jpg",
+    title: "2025 VW T7 Campervan",
+    subtitle: "£25,000 Cash Alternative",
+    price: "£0.99",
+  },
+
+  {
+    id: 2,
+    image:
+      "https://images.unsplash.com/photo-1503376780353-7e6692767b70",
+    title: "Win £101,000 Tax Free Cash",
+    subtitle: "Live Draw This Week",
+    price: "£0.49",
+  },
+
+  {
+    id: 3,
+    image:
+      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7",
+    title: "Cash & Bullion Wheel",
+    subtitle: "Instant Win Game",
+    price: "£0.25",
+  },
+
+  {
+    id: 4,
+    image:
+      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d",
+    title: "Lamborghini Huracán EVO",
+    subtitle: "£200,000 Prize",
+    price: "£2.99",
+  },
+];
 
 const Banners = () => {
   return (
-    <section className="relative overflow-hidden bg-[#021019] text-white min-h-screen">
-      
-      {/* BACKGROUND */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_left,#0cf2ff15,transparent_40%)]"></div>
+    <section className="py-6 overflow-hidden bg-black">
 
-        {/* <img
-          src="/https://i.ibb.co.com/qLpnZBPB/lam.jpg"
-          alt="Luxury Car"
-          className="absolute right-0 top-0 h-full w-[55%] object-cover opacity-10"
-        /> */}
-      </div>
+      <Swiper
+        modules={[Autoplay, Navigation]}
+        navigation
+        centeredSlides
+        loop
+        autoplay={{
+          delay: 3500,
+          disableOnInteraction: false,
+        }}
+        breakpoints={{
+          0: {
+            slidesPerView: 1.1,
+            spaceBetween: 10,
+          },
 
-      {/* MAIN CONTENT */}
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10 pt-32 pb-20">
-        
-        <div className="grid items-center grid-cols-1 gap-16 lg:grid-cols-2">
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 15,
+          },
 
-          {/* LEFT SIDE */}
-          <div>
+          1200: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+        }}
+        className="competitionSwiper"
+      >
+        {slides.map((slide) => (
+          <SwiperSlide key={slide.id}>
+            <div className="relative overflow-hidden rounded-2xl group h-[550px]">
 
-            {/* LIVE BADGE */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 border rounded-full border-cyan-400/20 bg-cyan-400/5 backdrop-blur-md">
-              
-              <div className="w-2 h-2 rounded-full bg-cyan-300 animate-pulse"></div>
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className="object-cover w-full h-full transition duration-700 group-hover:scale-110"
+              />
 
-              <span className="text-xs font-semibold tracking-wide uppercase text-cyan-300">
-                LIVE DRAW
-              </span>
+              {/* overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
 
-              <span className="text-sm text-white/70">
-                — 1,247 players online
-              </span>
-            </div>
-
-            {/* HEADING */}
-            <h1 className="text-[55px] md:text-[82px] font-black leading-[0.92] tracking-tight">
-              Win Luxury Prizes
-              <br />
-
-              <span className="text-transparent bg-gradient-to-r from-cyan-300 to-blue-400 bg-clip-text">
-                for Less
-              </span>
-            </h1>
-
-            {/* DESCRIPTION */}
-            <p className="max-w-[560px] mt-8 text-xl leading-9 text-white/70">
-              Enter competitions from just 49p for the chance to win cars,
-              cash, holidays & more. Fully transparent, fair draws with
-              instant results.
-            </p>
-
-            {/* BUTTONS */}
-            <div className="flex flex-wrap gap-4 mt-10">
-
-              <button className="flex items-center gap-3 px-8 py-4 text-sm font-bold text-black transition-all duration-300 rounded-2xl bg-gradient-to-r from-cyan-300 to-blue-400 hover:scale-105">
-                View Competitions
-                <ArrowRight size={18} />
-              </button>
-
-              <button className="px-8 py-4 text-sm font-semibold transition-all duration-300 border rounded-2xl border-cyan-400/20 bg-white/[0.02] hover:bg-white/[0.05]">
-                🎰 Free Spin
-              </button>
-
-            </div>
-
-            {/* STATS */}
-            <div className="flex flex-wrap gap-12 mt-14">
-
-              <div>
-                <h3 className="text-4xl font-black text-cyan-300">
-                  50,000+
-                </h3>
-
-                <p className="mt-1 text-sm text-white/50">
-                  Winners
-                </p>
+              {/* live badge */}
+              <div className="absolute top-4 left-4">
+                <span className="px-3 py-1 text-xs font-bold text-white bg-red-600 rounded-full">
+                  LIVE DRAW
+                </span>
               </div>
 
-              <div>
-                <h3 className="text-4xl font-black text-cyan-300">
-                  £2M+
-                </h3>
+              {/* content */}
+              <div className="absolute bottom-0 left-0 right-0 p-6">
 
-                <p className="mt-1 text-sm text-white/50">
-                  Prizes Given
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-4xl font-black text-cyan-300">
-                  4.9★
-                </h3>
-
-                <p className="mt-1 text-sm text-white/50">
-                  Rating
-                </p>
-              </div>
-
-            </div>
-          </div>
-
-          {/* RIGHT CARD */}
-          <div className="flex justify-center lg:justify-end">
-
-            <div className="w-full max-w-[420px] rounded-[30px] border border-cyan-400/20 bg-[#071720]/80 backdrop-blur-xl p-6 shadow-[0_0_60px_rgba(34,211,238,0.08)]">
-
-              {/* TIMER */}
-              <div>
-                <p className="mb-4 text-xs tracking-[0.25em] uppercase text-white/40">
-                  Featured Draw Closes In
-                </p>
-
-                <div className="flex gap-3">
-
-                  {[
-                    { number: "01", label: "Days" },
-                    { number: "17", label: "Hrs" },
-                    { number: "59", label: "Min" },
-                    { number: "55", label: "Sec" },
-                  ].map((item, index) => (
-                    <div key={index} className="text-center">
-                      
-                      <div className="flex items-center justify-center w-14 h-14 font-black rounded-xl bg-cyan-400/10 text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.3)]">
-                        {item.number}
-                      </div>
-
-                      <p className="mt-2 text-[10px] uppercase tracking-widest text-white/40">
-                        {item.label}
-                      </p>
-
-                    </div>
-                  ))}
-
-                </div>
-              </div>
-
-              {/* IMAGE BOX */}
-              <div className="flex items-center justify-center h-[220px] mt-8 rounded-3xl border border-cyan-400/10 bg-[#031018] overflow-hidden">
-
-                <img
-                  src="https://i.ibb.co.com/qLpnZBPB/lam.jpg"
-                  alt="Lamborghini"
-                  className="object-contain w-[85%] hover:scale-105 transition duration-500"
-                />
-
-              </div>
-
-              {/* INFO */}
-              <div className="mt-6">
-
-                <h2 className="text-2xl font-bold">
-                  Lamborghini Huracán EVO
+                <h2 className="mb-2 text-3xl font-black text-white">
+                  {slide.title}
                 </h2>
 
-                <p className="mt-2 text-sm text-white/45">
-                  Worth £200,000 + £5,000 cash alternative
+                <p className="mb-5 text-white/70">
+                  {slide.subtitle}
                 </p>
 
-              </div>
+                <div className="flex items-center justify-between">
 
-              {/* PROGRESS */}
-              <div className="mt-6">
+                  <div>
+                    <p className="text-xs text-white/50">
+                      Tickets From
+                    </p>
 
-                <div className="flex items-center justify-between mb-2 text-xs">
-                  <span className="text-white/40">
-                    4,120 sold
-                  </span>
+                    <h3 className="text-4xl font-black text-cyan-300">
+                      {slide.price}
+                    </h3>
+                  </div>
 
-                  <span className="font-semibold text-red-400">
-                    82% filled
-                  </span>
+                  <button className="px-6 py-3 font-bold text-black transition rounded-xl bg-cyan-300 hover:scale-105">
+                    Enter Now
+                  </button>
+
                 </div>
-
-                <div className="w-full h-2 overflow-hidden rounded-full bg-white/10">
-                  <div className="w-[82%] h-full rounded-full bg-gradient-to-r from-red-400 to-orange-300"></div>
-                </div>
-
-              </div>
-
-              {/* BOTTOM */}
-              <div className="flex items-end justify-between mt-8">
-
-                <div>
-                  <p className="text-sm text-white/40">
-                    From just
-                  </p>
-
-                  <h1 className="text-5xl font-black text-cyan-300">
-                    £2.99
-                  </h1>
-                </div>
-
-                <button className="px-8 py-4 text-sm font-bold text-black transition-all duration-300 rounded-2xl bg-gradient-to-r from-cyan-300 to-blue-400 hover:scale-105">
-                  Enter Now
-                </button>
 
               </div>
 
             </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
 
-          </div>
-
-        </div>
-
-      </div>
     </section>
   );
 };
