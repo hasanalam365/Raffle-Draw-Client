@@ -89,9 +89,9 @@ const FeaturesCompetetion = () => {
     items.map((item) => (
       <div
         key={item.id}
-        className="bg-[#081c27] border border-[#123040] rounded-2xl  group hover:border-[#57f3f0]/40 transition-all duration-300 hover:-translate-y-1"
+        className="bg-[#081c27] border border-[#123040] rounded-2xl overflow-hidden group hover:border-[#57f3f0]/40 transition-all duration-300 hover:-translate-y-1"
       >
-        <div className="relative ">
+        <div className="relative overflow-hidden">
           <img
             src={item.image}
             alt={item.title}
@@ -131,7 +131,7 @@ const FeaturesCompetetion = () => {
               </span>
             </div>
 
-            <div className="w-full h-2 bg-[#102836] rounded-full ">
+            <div className="w-full h-2 bg-[#102836] rounded-full overflow-hidden">
               <div
                 className="h-full bg-[#57f3f0]"
                 style={{
