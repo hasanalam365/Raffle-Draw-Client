@@ -1,27 +1,55 @@
-// Navbar.jsx
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Menu, X, User } from "lucide-react";
+import {
+  Menu,
+  X,
+  User,
+  ChevronDown,
+} from "lucide-react";
 
 export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] =
+    useState(false);
+
+  const [moreOpen, setMoreOpen] =
+    useState(false);
+
+  const [mobileMoreOpen, setMobileMoreOpen] =
+    useState(false);
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Competitions", path: "/competitions" },
+    {
+      name: "Competitions",
+      path: "/competitions",
+    },
     { name: "Winners", path: "/winners" },
-    { name: "How It Works", path: "/how-it-works" },
+    {
+      name: "How It Works",
+      path: "/how-it-works",
+    },
+  ];
+
+  const moreLinks = [
     { name: "About", path: "/about-us" },
-    { name: "Contact", path: "/contact" },
+    { name: "Gift Cards", path: "/gift-cards" },
+    { name: "FAQ", path: "/faq" },
+    { name: "Blog", path: "/blog" },
+    {
+      name: "Terms & Conditions",
+      path: "/terms",
+    },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b bg-[#061116]/95 border-cyan-400/10 backdrop-blur-md">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-        <div className="flex items-center justify-between h-[82px]">
-          
+    <nav className="sticky top-0 z-50 border-b backdrop-blur-xl bg-[#071317]/90 border-white/10">
+      <div className="px-5 mx-auto max-w-7xl lg:px-8">
+        <div className="flex items-center justify-between h-20">
           {/* LOGO */}
-          <Link to="/" className="flex items-center gap-3">
+          <Link
+            to="/"
+            className="flex items-center gap-3"
+          >
             <div className="flex items-center justify-center w-10 h-10 border rounded-xl border-cyan-400/30 bg-cyan-400/10">
               <img
                 src="DEMOLOGO"
@@ -52,6 +80,40 @@ export default function Navbar() {
                 {link.name}
               </NavLink>
             ))}
+
+            {/* MORE DROPDOWN */}
+            <div
+              className="relative"
+              onMouseEnter={() =>
+                setMoreOpen(true)
+              }
+              onMouseLeave={() =>
+                setMoreOpen(false)
+              }
+            >
+              <button className="flex items-center gap-1 px-5 py-2.5 rounded-full text-[13px] font-medium text-white/80 hover:text-white hover:bg-white/5 transition-all">
+                More
+                <ChevronDown size={16} />
+              </button>
+
+              <div
+                className={`absolute top-full left-0 mt-3 w-60 rounded-2xl border border-white/10 bg-[#0c1d22] backdrop-blur-xl shadow-2xl overflow-hidden transition-all duration-300 ${
+                  moreOpen
+                    ? "opacity-100 visible translate-y-0"
+                    : "opacity-0 invisible -translate-y-2"
+                }`}
+              >
+                {moreLinks.map((item) => (
+                  <NavLink
+                    key={item.name}
+                    to={item.path}
+                    className="block px-5 py-3 text-sm transition-all text-white/75 hover:text-cyan-300 hover:bg-white/5"
+                  >
+                    {item.name}
+                  </NavLink>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* RIGHT SIDE */}
@@ -61,16 +123,27 @@ export default function Navbar() {
             </button>
 
             <button className="text-white/70 hover:text-white">
-              <User size={18} strokeWidth={2} />
+              <User
+                size={18}
+                strokeWidth={2}
+              />
             </button>
           </div>
 
           {/* MOBILE BUTTON */}
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() =>
+              setMobileMenuOpen(
+                !mobileMenuOpen
+              )
+            }
             className="text-white lg:hidden"
           >
-            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            {mobileMenuOpen ? (
+              <X size={28} />
+            ) : (
+              <Menu size={28} />
+            )}
           </button>
         </div>
       </div>
@@ -83,7 +156,9 @@ export default function Navbar() {
               <NavLink
                 key={link.name}
                 to={link.path}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() =>
+                  setMobileMenuOpen(false)
+                }
                 className={({ isActive }) =>
                   `px-4 py-3 rounded-xl text-sm transition-all ${
                     isActive
@@ -95,6 +170,43 @@ export default function Navbar() {
                 {link.name}
               </NavLink>
             ))}
+
+            {/* MOBILE MORE */}
+            <button
+              onClick={() =>
+                setMobileMoreOpen(
+                  !mobileMoreOpen
+                )
+              }
+              className="flex items-center justify-between px-4 py-3 text-sm rounded-xl text-white/75 hover:text-white hover:bg-white/5"
+            >
+              More
+              <ChevronDown
+                size={18}
+                className={`transition-transform ${
+                  mobileMoreOpen
+                    ? "rotate-180"
+                    : ""
+                }`}
+              />
+            </button>
+
+            {mobileMoreOpen && (
+              <div className="pl-4 mt-2 space-y-1">
+                {moreLinks.map((item) => (
+                  <NavLink
+                    key={item.name}
+                    to={item.path}
+                    onClick={() =>
+                      setMobileMenuOpen(false)
+                    }
+                    className="block px-4 py-2 text-sm rounded-lg text-white/65 hover:text-cyan-300 hover:bg-white/5"
+                  >
+                    {item.name}
+                  </NavLink>
+                ))}
+              </div>
+            )}
 
             <button className="w-full py-3 mt-5 text-sm font-semibold text-black transition rounded-full bg-cyan-300 hover:bg-cyan-200">
               Enter Now
