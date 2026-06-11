@@ -8,6 +8,8 @@ import Competitions from "../../Pages/Competitions/Competitions";
 import Winners from "../../Pages/Winners/Winners";
 import HowItWorks from "../../Pages/Homes/HowItWorks";
 import About from "../../Pages/About/About";
+import GiftCards from "../../Pages/GiftCards/GiftCards";
+import Blogs from "../../Pages/Blogs/Blogs";
 
 
 
@@ -39,6 +41,14 @@ export const router = createBrowserRouter([
             {
                 path: '/about-us',
                 element: <About/>
+            },
+            {
+                path: '/gift-cards',
+                element: <GiftCards/>
+            },
+            {
+                path: '/blogs',
+                element: <Blogs/>
             }
           
            

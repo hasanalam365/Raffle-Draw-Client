@@ -33,8 +33,8 @@ export default function Navbar() {
   const moreLinks = [
     { name: "About", path: "/about-us" },
     { name: "Gift Cards", path: "/gift-cards" },
-    { name: "FAQ", path: "/faq" },
-    { name: "Blog", path: "/blog" },
+   
+    { name: "Blogs", path: "/blogs" },
     {
       name: "Terms & Conditions",
       path: "/terms",
